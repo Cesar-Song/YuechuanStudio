@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logo\川logo.ico" type="image/png">
+    <title>跃川工作室作品集 | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    </head>
+<body>
+        <script>
+            // 页面加载后自动滚动到主页
+            window.addEventListener('DOMContentLoaded', function() {
+                if (window.location.hash === '' || window.location.hash === '#home') {
+                    var homeSection = document.getElementById('home');
+                    if (homeSection) {
+                        homeSection.scrollIntoView({behavior: 'auto'});
+                    }
+                }
+            });
+        </script>
+        <!-- ==================== 导航栏 ==================== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo"><img src="logo/川logo.png" alt="" class="logo-img"><span class="logo-text">YUECHUAN STUDIO<span class="dot">.</span>跃川工作室</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">简历</a></li>
+                <li><a href="#aigc">AIGC设计</a></li>
+                <li><a href="#ppt">PPT设计</a></li>
+                <li><a href="#social">社交媒体</a></li>
+                <li><a href="#contact" class="btn-contact">联系我</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================== Hero 区域 ==================== -->
+    <section class="hero" id="home">
+        <div class="hero-bg" aria-hidden="true">
+            <img src="background/2784382079/back-ezgif.com-video-to-gif-converter.gif" alt="">
+        </div>
+        <div class="hero-particles" id="heroParticles"></div>
+        <!-- 全屏英文大标题 -->
+        <div class="hero-big-text">CREATIVE VISUAL DESIGN</div>
+        <!-- 波浪线交互效果 -->
+        <a-waves class="hero-waves"><svg></svg></a-waves>
+        <div class="hero-content">
+            <h1>YUECHUAN.STUDIO<br><span class="accent">跃川工作室</span></h1>
+            <p class="hero-subtitle">PPT设计 · AIGC创作 · 视觉表达</p>
+            <div class="hero-cta">
+                <a href="#aigc" class="btn-primary">查看作品</a>
+                <a href="#about" class="btn-outline-light">了解我</a>
+            </div>
+        </div>
+        <div class="hero-scroll" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+            <span></span>
+        </div>
+    </section>
+
+    <!-- ==================== 个人简历区域 ==================== -->
+    <section class="section fade-section" id="about">
+        <div class="section-header section-header--left">
+            <div class="section-title-row">
+                <div class="section-title-group">
+                    <div class="section-number">01</div>
+                    <h2>个人简历</h2>
+                </div>
+                <div class="section-line"></div>
+            </div>
+            <p>About Me · 关于我</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-bg-image">
+                <img src="extra-picture/个人简历9：16黑白.jpg" alt="个人照片">
+            </div>
+            <div class="about-cell about-cell-r1c1"></div>
+            <div class="about-cell about-cell-r1c2"></div>
+            <div class="about-cell about-cell-r1c3"></div>
+            <div class="about-cell about-cell-r2c1"></div>
+            <div class="about-content about-cell-r2-3 about-cell-c2-3">
+                <div class="about-info">
+                    <h3>你好，我是<span class="highlight">跃川</span></h3>
+                    <p>
+                        一名热爱视觉表达的设计师，专注于<strong>PPT高级定制设计</strong>与<strong>AIGC创意生成</strong>。
+                        我相信好的设计能够跨越语言的边界，用视觉讲述动人的故事。
+                        拥有3年的设计经验，服务过众多品牌客户，致力于将每一个项目打造成独一无二的视觉作品。
+                    </p>
+                    <div class="skill-tags">
+                        <span class="skill-tag skill-tag--icon"><img src="logo/PowerPoint-Icon-FY26.svg" alt="PPT"></span>
+                        <span class="skill-tag skill-tag--icon"><img src="logo/pic_html5.gif" alt="H5"></span>
+                        <span class="skill-tag skill-tag--icon"><img src="logo/midjourney.svg" alt="Midjourney"></span>
+                        <span class="skill-tag skill-tag--icon"><img src="logo/jimeng-color.svg" alt="jimeng"></span>
+                        <span class="skill-tag skill-tag--icon"><img src="logo/openai.svg" alt="gpt"></span>
+                        <span class="skill-tag skill-tag--icon"><img src="logo/nanobanana-color.svg" alt="nanobanana-color"></span>
+                        <span class="skill-tag">Stable Diffusion</span>
+                        <span class="skill-tag">Photoshop</span>
+                        <span class="skill-tag">Seedance</span>
+                        <span class="skill-tag">品牌视觉</span>
+                        <span class="skill-tag">版式设计</span>
+                    </div>
+                    <a href="cans/简历.pdf" id="btnDownloadCv" class="btn-download-cv" download="简历.pdf">↓ 下载完整简历</a>
+                </div>
+            </div>
+            <div class="about-cell about-cell-r3c1"></div>
+        </div>
+    </section>
+
+    <!-- ==================== AIGC设计作品区域 ==================== -->
+    <section class="section fade-section" id="aigc">
+        <div class="section-header section-header--right">
+            <div class="section-title-row">
+                <div class="section-title-group">
+                    <div class="section-number">02</div>
+                    <h2>AIGC设计作品</h2>
+                </div>
+                <div class="section-line"></div>
+            </div>
+            <p>AI-Generated Content · 视频展示</p>
+        </div>
+        <div class="works-grid">
+            <div class="work-card aigc-card" data-type="aigc" data-video="AIGC-video/AIGC-1-中国神话集.mp4" data-images="AIGC-video/AIGC-1.png">
+                <div class="work-card-image">
+                    <video muted loop playsinline poster="AIGC-video/AIGC-1.png">
+                        <source src="AIGC-video/AIGC-1-中国神话集.mp4" type="video/mp4">
+                    </video>
+                    <div class="work-card-overlay"><span class="overlay-icon">▶</span></div>
+                </div>
+                <div class="work-card-info">
+                    <div class="work-category">AIGC · 概念艺术</div>
+                    <h4>中国神话集</h4>
+                    <p>Midjourney + Runway 生成</p>
+                </div>
+            </div>
+            <div class="work-card aigc-card" data-type="aigc" data-video="AIGC-video\AIGC-2-环太平洋.mp4" data-images="AIGC-video\AIGC-2.png">
+                <div class="work-card-image">
+                    <video muted loop playsinline poster="AIGC-video\AIGC-2.png">
+                        <source src="AIGC-video\AIGC-2-环太平洋.mp4" type="video/mp4">
+                    </video>
+                    <div class="work-card-overlay"><span class="overlay-icon">▶</span></div>
+                </div>
+                <div class="work-card-info">
+                    <div class="work-category">环太平洋</div>
+                    <h4>主视觉AI动画</h4>
+                    <p>Stable Diffusion + Deforum</p>
+                </div>
+            </div>
+            <div class="work-card aigc-card" data-type="aigc" data-video="AIGC-video\AIGC-3-武侠.mp4" data-images="AIGC-video\AIGC-3.png">
+                <div class="work-card-image">
+                    <video muted loop playsinline poster="AIGC-video\AIGC-3.png">
+                        <source src="AIGC-video\AIGC-3-武侠.mp4" type="video/mp4">
+                    </video>
+                    <div class="work-card-overlay"><span class="overlay-icon">▶</span></div>
+                </div>
+                <div class="work-card-info">
+                    <div class="work-category">AIGC · 角色设计</div>
+                    <h4>IP形象生成过程</h4>
+                    <p>Midjourney 角色变体动画</p>
+                </div>
+            </div>
+            <div class="work-card aigc-card" data-type="aigc" data-video="AIGC-video\AIGC-4-小故事.mp4" data-images="AIGC-video\AIGC-4.png">
+                <div class="work-card-image">
+                    <video muted loop playsinline poster="AIGC-video\AIGC-4.png">
+                        <source src="AIGC-video\AIGC-4-小故事.mp4" type="video/mp4">
+                    </video>
+                    <div class="work-card-overlay"><span class="overlay-icon">▶</span></div>
+                </div>
+                <div class="work-card-info">
+                    <div class="work-category">AIGC · 场景渲染</div>
+                    <h4>超现实场景漫游</h4>
+                    <p>DALL·E 3 + Pika Labs</p>
+                </div>
+            </div>
+            <div class="work-card aigc-card" data-type="aigc" data-video="AIGC-video\AIGC-5-AD钙奶.mp4" data-images="AIGC-video\AIGC-5.png">
+                <div class="work-card-image">
+                    <video muted loop playsinline poster="AIGC-video\AIGC-5.png">
+                        <source src="AIGC-video\AIGC-5-AD钙奶.mp4" type="video/mp4">
+                    </video>
+                    <div class="work-card-overlay"><span class="overlay-icon">▶</span></div>
+                </div>
+                <div class="work-card-info">
+                    <div class="work-category">AIGC · 广告宣传</div>
+                    <h4>广告宣传</h4>
+                    <p>LibTV</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PPT设计作品区域 ==================== -->
+    <section class="section-ppt fade-section" id="ppt">
+        <div class="section">
+            <div class="section-header section-header--left">
+                <div class="section-title-row">
+                    <div class="section-title-group">
+                        <div class="section-number">03</div>
+                        <h2>PPT设计作品</h2>
+                    </div>
+                    <div class="section-line"></div>
+                </div>
+                <p>Presentation Design · 点击预览大图</p>
+            </div>
+            <div class="works-grid">
+                <div class="work-card" data-type="ppt" data-images="PPT-image/PPT-1-14800_基于RAG的技术文档问答系统_04/14800_基于RAG的技术文档问答系统_01.png,PPT-image/PPT-1-14800_基于RAG的技术文档问答系统_04/14800_基于RAG的技术文档问答系统_02.png,PPT-image/PPT-1-14800_基于RAG的技术文档问答系统_04/14800_基于RAG的技术文档问答系统_03.png,PPT-image/PPT-1-14800_基于RAG的技术文档问答系统_04/14800_基于RAG的技术文档问答系统_04.png,PPT-image/PPT-1-14800_基于RAG的技术文档问答系统_04/14800_基于RAG的技术文档问答系统_05.png,PPT-image/PPT-1-14800_基于RAG的技术文档问答系统_04/14800_基于RAG的技术文档问答系统_06.png,PPT-image/PPT-1-14800_基于RAG的技术文档问答系统_04/14800_基于RAG的技术文档问答系统_07.png,PPT-image/PPT-1-14800_基于RAG的技术文档问答系统_04/14800_基于RAG的技术文档问答系统_08.png,PPT-image/PPT-1-14800_基于RAG的技术文档问答系统_04/14800_基于RAG的技术文档问答系统_09.png,PPT-image/PPT-1-14800_基于RAG的技术文档问答系统_04/14800_基于RAG的技术文档问答系统_10.png">
+                    <div class="work-card-image">
+                        <img src="PPT-image/PPT-1-14800_基于RAG的技术文档问答系统_04/14800_基于RAG的技术文档问答系统_01.png" alt="开题答辩PPT">
+                    </div>
+                    <div class="work-card-info">
+                        <div class="work-category">PPT · 开题答辩</div>
+                        <h4>基于RAG的技术文档问答系统</h4>
+                        <p>为毕业生定制的开题答辩演示文稿</p>
+                    </div>
+                </div>
+                <div class="work-card" data-type="ppt" data-images="PPT-image/PPT-2-网剧/网剧-展示图.jpg">
+                    <div class="work-card-image">
+                        <img src="PPT-image/PPT-2-网剧/网剧-01.jpg" alt="网剧">
+                    </div>
+                    <div class="work-card-info">
+                        <div class="work-category">PPT · 网剧路演</div>
+                        <h4>网剧发布会PPT</h4>
+                        <p>网剧发布会级别演示设计</p>
+                    </div>
+                </div>
+                <div class="work-card" data-type="ppt" data-images="PPT-image/PPT-3-色调研究/色调研究-01.jpg">
+                    <div class="work-card-image">
+                        <img src="PPT-image/PPT-3-色调研究/色调研究-01.jpg" alt="课程研究PPT">
+                    </div>
+                    <div class="work-card-info">
+                        <div class="work-category">PPT · 课程研究</div>
+                        <h4>课程研究PPT</h4>
+                        <p>沉稳专业的视觉风格</p>
+                    </div>
+                </div>
+                <div class="work-card" data-type="ppt" data-images="PPT-image/PPT-04-市集宣传/市集宣传-01.jpg">
+                    <div class="work-card-image">
+                        <img src="PPT-image/PPT-04-市集宣传/市集宣传-01.jpg" alt="市集宣传PPT">
+                    </div>
+                    <div class="work-card-info">
+                        <div class="work-category">PPT · 市集宣传</div>
+                        <h4>市集宣传PPT</h4>
+                        <p>清新活泼的设计语言</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 社交媒体区域 ==================== -->
+    <section class="social-section fade-section" id="social">
+        <div class="section-header section-header--right">
+            <div class="section-title-row">
+                <div class="section-title-group">
+                    <div class="section-number">04</div>
+                    <h2>社交媒体</h2>
+                </div>
+                <div class="section-line"></div>
+            </div>
+            <p>Social Media · 找到我</p>
+        </div>
+        <div class="social-grid">
+            <a href="#" class="social-card" target="_blank" rel="noopener">
+                <div class="social-icon"><img src="logo/bilibili-logo.png" alt="Bilibili" style="width:128px;height:128px;"></div>
+                <div class="social-info">
+                    <div class="social-name">Bilibili</div>
+                    <div class="social-handle">@跃川</div>
+                </div>
+            </a>
+            <a href="https://xhslink.com/m/7jqiYCoCjYl" class="social-card" target="_blank" rel="noopener">
+                <div class="social-icon"><img src="logo/小红书logo.png" alt="小红书" style="width:64px;height:64px;"></div>
+                <div class="social-info">
+                    <div class="social-name">小红书</div>
+                    <div class="social-handle">@跃川-</div>
+                </div>
+            </a>
+            <a href="#" class="social-card" target="_blank" rel="noopener">
+                <div class="social-icon"><img src="logo/微信logo.svg" alt="微信" style="width:64px;height:64px;"></div>
+                <div class="social-info">
+                    <div class="social-name">微信</div>
+                    <div class="social-handle">Jiang-1104z</div>
+                </div>
+            </a>
+            <a href="#" class="social-card" target="_blank" rel="noopener">
+                <div class="social-icon"><img src="logo/抖音logo.image" alt="抖音" style="width:45px;height:45px;"></div>
+                <div class="social-info">
+                    <div class="social-name">抖音</div>
+                    <div class="social-handle">@跃川</div>
+                </div>
+            </a>
+            <a href="#" class="social-card" target="_blank" rel="noopener">
+                <div class="social-icon"><img src="logo/淘宝logo.png" alt="淘宝" style="width:128px;height:128px;"></div>
+                <div class="social-info">
+                    <div class="social-name">淘宝</div>
+                    <div class="social-handle">@跃川</div>
+                </div>
+            </a>
+            <a href="#" class="social-card" target="_blank" rel="noopener">
+                <div class="social-icon"><img src="logo/闲鱼logo.png" alt="闲鱼" style="width:128px;height:128px;"></div>
+                <div class="social-info">
+                    <div class="social-name">闲鱼</div>
+                    <div class="social-handle">@跃川</div>
+                </div>
+            </a>
+            <a href="#" class="social-card" target="_blank" rel="noopener">
+                <div class="social-icon"><img src="logo/QQlogo.webp" alt="QQ" style="width:45px;height:45px;"></div>
+                <div class="social-info">
+                    <div class="social-name">QQ</div>
+                    <div class="social-handle">@跃川</div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- ==================== 联系区域 ==================== -->
+    <section class="contact-section fade-section" id="contact">
+        <canvas id="contactLeonCanvas"></canvas>
+        <h2>与我合作</h2>
+        <p>欢迎随时联系，让我们一起创造出色的视觉作品</p>
+        <a href="mailto:yourname@example.com" class="contact-email">yuechuanyuechuan@example.com</a>
+    </section>
+
+    <!-- ==================== 页脚 ==================== -->
+    <footer class="footer">
+        <div class="footer-name"><img src="logo/川logo.png" alt="" class="footer-logo-img">YUECHUAN STUDIO · 跃川工作室</div>
+        <div class="footer-tagline">PPT设计 · AIGC创作 · 视觉表达</div>
+        <div class="footer-copy">&copy; 2026 YUECHUAN STUDIO. All rights reserved. | 个人设计作品集</div>
+    </footer>
+
+    <!-- ==================== 模态框 ==================== -->
+    <div class="modal" id="previewModal">
+        <button class="modal-close" id="modalClose">&times;</button>
+        <div class="modal-content" id="modalContent">
+            <!-- 动态填充内容 -->
+        </div>
+        <button class="fullscreen-btn" id="fullscreenBtn" style="display: none;">⛶ 全屏</button>
+    </div>
+
+    <!-- ==================== 脚本 ==================== -->
+    <script src="leonsans-master/leonsans-master/dist/leon.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
