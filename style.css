@@ -987,14 +987,51 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: 12px;
+    transform: translateY(-6vh);
+}
+
+/* 环形进度包围 logo */
+.preloader-ring-container {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.preloader-ring-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.preloader-ring-track {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.08);
+    stroke-width: 3;
+}
+
+.preloader-ring-fill {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: 326.73;
+    stroke-dashoffset: 326.73;
+    transition: stroke-dashoffset 0.35s ease;
 }
 
 .preloader-logo-img {
-    width: 72px;
-    height: 72px;
+    width: 64px;
+    height: 64px;
     object-fit: contain;
     animation: preloaderPulse 2s ease-in-out infinite;
+    position: relative;
+    z-index: 2;
 }
 
 @keyframes preloaderPulse {
@@ -1017,28 +1054,18 @@ body {
     margin-top: -10px;
 }
 
-.preloader-progress-bar {
-    width: 260px;
-    height: 3px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 2px;
-    overflow: hidden;
-    margin-top: 8px;
+.preloader-slogan {
+    font-family: 'DRUNKFONTS', var(--font-heading), sans-serif;
+    font-size: 36px;
+    color: var(--text-primary);
+    letter-spacing: 2px;
+    opacity: 0.9;
+    animation: sloganFadeIn 1.2s ease-out forwards;
 }
 
-.preloader-progress-fill {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, var(--accent), #e0c490);
-    border-radius: 2px;
-    transition: width 0.3s ease;
-}
-
-.preloader-percent {
-    font-family: var(--font-heading);
-    font-size: 13px;
-    color: var(--text-secondary);
-    letter-spacing: 1px;
+@keyframes sloganFadeIn {
+    0% { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 0.9; transform: translateY(0); }
 }
 
 .preloader-tip {

@@ -1,11 +1,11 @@
 // ========== 资源预加载器 ==========
 (function () {
     var preloader = document.getElementById('preloader');
-    var progressFill = document.getElementById('preloaderProgressFill');
-    var percentText = document.getElementById('preloaderPercent');
+    var ringFill = document.getElementById('preloaderRingFill');
 
     if (!preloader) return;
 
+    var circumference = 2 * Math.PI * 52; // ≈ 326.73
     var totalItems = 0;
     var loadedItems = 0;
     var hasFinished = false;
@@ -14,8 +14,9 @@
         if (hasFinished) return;
         var pct = totalItems > 0 ? Math.round((loadedItems / totalItems) * 100) : 0;
         if (pct > 100) pct = 100;
-        progressFill.style.width = pct + '%';
-        percentText.textContent = pct + '%';
+        // stroke-dashoffset: circumference → 0 表示 0% → 100%
+        var offset = circumference * (1 - pct / 100);
+        ringFill.style.strokeDashoffset = offset;
     }
 
     function itemLoaded() {
@@ -34,8 +35,7 @@
     function finish() {
         if (hasFinished) return;
         hasFinished = true;
-        progressFill.style.width = '100%';
-        percentText.textContent = '100%';
+        ringFill.style.strokeDashoffset = 0;
         setTimeout(function () {
             preloader.classList.add('hidden');
             // 加载完成后移除 preloader DOM
