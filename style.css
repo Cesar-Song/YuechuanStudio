@@ -959,3 +959,97 @@ body {
     }
     .section-ppt .section { padding-bottom: 40px; }
 }
+
+/* ========== 加载页面 (Preloader) ========== */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.preloader-bg {
+    position: absolute;
+    inset: 0;
+    background: var(--bg-dark);
+}
+
+.preloader-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.preloader-logo-img {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    animation: preloaderPulse 2s ease-in-out infinite;
+}
+
+@keyframes preloaderPulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.08); opacity: 1; }
+}
+
+.preloader-title {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: 3px;
+}
+
+.preloader-subtitle {
+    font-size: 14px;
+    color: var(--accent);
+    letter-spacing: 4px;
+    margin-top: -10px;
+}
+
+.preloader-progress-bar {
+    width: 260px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 8px;
+}
+
+.preloader-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--accent), #e0c490);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.preloader-percent {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    color: var(--text-secondary);
+    letter-spacing: 1px;
+}
+
+.preloader-tip {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+}
+
+/* 加载完成隐藏 */
+.preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}

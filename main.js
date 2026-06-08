@@ -1,3 +1,140 @@
+// ========== 资源预加载器 ==========
+(function () {
+    var preloader = document.getElementById('preloader');
+    var progressFill = document.getElementById('preloaderProgressFill');
+    var percentText = document.getElementById('preloaderPercent');
+
+    if (!preloader) return;
+
+    var totalItems = 0;
+    var loadedItems = 0;
+    var hasFinished = false;
+
+    function updateProgress() {
+        if (hasFinished) return;
+        var pct = totalItems > 0 ? Math.round((loadedItems / totalItems) * 100) : 0;
+        if (pct > 100) pct = 100;
+        progressFill.style.width = pct + '%';
+        percentText.textContent = pct + '%';
+    }
+
+    function itemLoaded() {
+        loadedItems++;
+        updateProgress();
+        checkAllDone();
+    }
+
+    function checkAllDone() {
+        if (hasFinished) return;
+        if (loadedItems >= totalItems && totalItems > 0) {
+            finish();
+        }
+    }
+
+    function finish() {
+        if (hasFinished) return;
+        hasFinished = true;
+        progressFill.style.width = '100%';
+        percentText.textContent = '100%';
+        setTimeout(function () {
+            preloader.classList.add('hidden');
+            // 加载完成后移除 preloader DOM
+            setTimeout(function () {
+                if (preloader && preloader.parentNode) {
+                    preloader.parentNode.removeChild(preloader);
+                }
+            }, 700);
+        }, 400);
+    }
+
+    // 安全兜底：最多等 15 秒
+    var fallbackTimer = setTimeout(function () {
+        if (!hasFinished) {
+            loadedItems = totalItems;
+            updateProgress();
+            finish();
+        }
+    }, 15000);
+
+    // ====== 收集所有需要追踪的资源 ======
+
+    // 1. 追踪所有 <img> 标签
+    var allImages = document.querySelectorAll('img');
+    allImages.forEach(function (img) {
+        if (img.complete) {
+            // 已经加载好了（缓存命中）
+            loadedItems++;
+        } else {
+            totalItems++;
+            img.addEventListener('load', itemLoaded, { once: true });
+            img.addEventListener('error', itemLoaded, { once: true });
+        }
+    });
+
+    // 2. 追踪所有 <video> 及其 <source>
+    var allVideos = document.querySelectorAll('video');
+    allVideos.forEach(function (video) {
+        // 追踪视频的 poster 图片
+        if (video.poster) {
+            var posterImg = new Image();
+            totalItems++;
+            posterImg.onload = itemLoaded;
+            posterImg.onerror = itemLoaded;
+            posterImg.src = video.poster;
+        }
+
+        // 追踪 video metadata 加载
+        if (video.readyState >= 1) {
+            loadedItems++;
+        } else {
+            totalItems++;
+            video.addEventListener('loadedmetadata', itemLoaded, { once: true });
+            video.addEventListener('error', itemLoaded, { once: true });
+        }
+    });
+
+    // 3. 追踪文档字体
+    if (document.fonts && document.fonts.ready) {
+        totalItems++;
+        document.fonts.ready.then(function () {
+            itemLoaded();
+        }).catch(function () {
+            itemLoaded();
+        });
+    }
+
+    // 4. DOMContentLoaded 作为兜底指标
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        loadedItems++;
+    } else {
+        totalItems++;
+        window.addEventListener('DOMContentLoaded', function () {
+            itemLoaded();
+        }, { once: true });
+    }
+
+    // 确保至少有 1 项，避免 0/0 导致进度不动
+    if (totalItems === 0) {
+        totalItems = 1;
+        loadedItems = 1;
+    }
+
+    updateProgress();
+    checkAllDone();
+
+    // window.load 事件：所有资源（包括样式表、iframe）加载完成
+    window.addEventListener('load', function () {
+        // 清除兜底计时器，用真正完成的时机
+        clearTimeout(fallbackTimer);
+        if (!hasFinished) {
+            loadedItems = totalItems;
+            updateProgress();
+            finish();
+        }
+    });
+
+})();
+
 // ========== 波浪线交互效果（a-waves 自定义元素）==========
 class AWaves extends HTMLElement {
     connectedCallback() {

@@ -8,6 +8,22 @@
     <link rel="stylesheet" href="style.css">
     </head>
 <body>
+    <!-- ==================== 加载页面 ==================== -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-bg"></div>
+        <div class="preloader-content">
+            <div class="preloader-logo">
+                <img src="logo/川logo.png" alt="YUECHUAN STUDIO" class="preloader-logo-img">
+            </div>
+            <div class="preloader-title">YUECHUAN STUDIO</div>
+            <div class="preloader-subtitle">跃川工作室</div>
+            <div class="preloader-progress-bar">
+                <div class="preloader-progress-fill" id="preloaderProgressFill"></div>
+            </div>
+            <div class="preloader-percent" id="preloaderPercent">0%</div>
+            <div class="preloader-tip">正在加载资源...</div>
+        </div>
+    </div>
         <script>
             // 页面加载后自动滚动到主页
             window.addEventListener('DOMContentLoaded', function() {
