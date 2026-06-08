@@ -111,10 +111,41 @@ class AWaves extends HTMLElement {
 }
 customElements.define('a-waves', AWaves);
 
-// ========== 导航栏滚动效果 ==========
+// ========== 导航栏滚动效果：下滑渐隐、上滑渐显 ==========
 const navbar = document.getElementById('navbar');
+let lastScrollY = window.scrollY;
+let cumulativeDown = 0;           // 累计下滑距离
+const FADE_DISTANCE = 280;       // 下滑 280px 后完全消失
+
 window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 50);
+    const currentScrollY = window.scrollY;
+    navbar.classList.toggle('scrolled', currentScrollY > 50);
+
+    // 在页面顶部：重置，完全显示
+    if (currentScrollY < 10) {
+        cumulativeDown = 0;
+        navbar.style.opacity = '1';
+        navbar.classList.remove('hidden');
+        lastScrollY = currentScrollY;
+        return;
+    }
+
+    const delta = currentScrollY - lastScrollY;
+    cumulativeDown += delta;
+    cumulativeDown = Math.max(0, Math.min(cumulativeDown, FADE_DISTANCE));
+
+    // 透明度随累计下滑距离线性变化
+    const opacity = 1 - cumulativeDown / FADE_DISTANCE;
+    navbar.style.opacity = opacity;
+
+    // 完全透明时禁用交互
+    if (opacity <= 0.02) {
+        navbar.classList.add('hidden');
+    } else {
+        navbar.classList.remove('hidden');
+    }
+
+    lastScrollY = currentScrollY;
 });
 
 // ========== 汉堡菜单 ==========
@@ -542,7 +573,7 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-document.querySelectorAll('.work-card, .social-card, .about-content, .skill-tag').forEach(el => {
+document.querySelectorAll('.work-card:not(.ppt-carousel-card), .social-card, .about-content, .skill-tag').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';
     el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
@@ -642,7 +673,7 @@ document.querySelectorAll('.fade-section').forEach(el => {
     let rafId = null;
 
     const leon = new LeonSans({
-        text: 'YUECHUAN.STUDIO',
+        text: 'Learn as You Build',
         color: ['#c9a87c'],
         size: 120,
         weight: 500,
@@ -772,3 +803,149 @@ document.querySelectorAll('.fade-section').forEach(el => {
     }, { threshold: 0.05 });
     contactObs.observe(section);
 })();
+
+// ========== PPT椭圆轮播 ==========
+(function initPptCarousel() {
+    const imgListOne = document.querySelector('#ppt .img-list');
+    if (!imgListOne) return;
+    let imgBoxList = Array.prototype.slice.call(document.querySelectorAll('#ppt .img-list .img-box'));
+    const imgBoxCount = imgBoxList.length;
+    const wrapper = document.querySelector('#ppt .ppt-carousel-wrapper');
+    const btnGroup = document.querySelector('#ppt .btn-group');
+    const lastBtn = document.querySelector('#ppt .last');
+    const nextBtn = document.querySelector('#ppt .next');
+    const lastImgBox = document.getElementById('last-img-box');
+
+    function getPostSpacing() {
+        return Number(getComputedStyle(wrapper).getPropertyValue('--post-spacing').replace('vw', ''));
+    }
+    function getPostSize() {
+        return Number(getComputedStyle(wrapper).getPropertyValue('--post-size').replace('vw', ''));
+    }
+
+    let postSpacing = getPostSpacing();
+    let postSize = getPostSize();
+    let imgBoxLength = postSize + postSpacing;
+    let totalLength = imgBoxLength * imgBoxCount;
+
+    let index = 0;
+    let timer = null;
+    const animationTime = 0.5;
+
+    imgBoxList.unshift(imgBoxList.pop());
+    imgListOne.style.transition = animationTime + 's ease';
+    setTimeout(function () {
+        btnGroup.style.opacity = '1';
+        btnGroup.style.bottom = '5%';
+    }, animationTime * 1000);
+
+    function reloadSizes() {
+        postSpacing = getPostSpacing();
+        postSize = getPostSize();
+        imgBoxLength = postSize + postSpacing;
+        totalLength = imgBoxLength * imgBoxCount;
+    }
+
+    function cilckFun(flag) {
+        reloadSizes();
+        if (flag === 'next') {
+            index--;
+            imgListOne.style.left = imgBoxLength * index + 'vw';
+            setTimeout(function () {
+                imgListOne.style.transition = 'none';
+                if (Math.abs(index) === imgBoxCount) {
+                    index = 0;
+                    imgListOne.style.left = '0';
+                    imgBoxList.forEach(function (item) {
+                        if (item.id === 'last-img-box') {
+                            item.style.transform = 'translateX(-' + totalLength + 'vw)';
+                        } else {
+                            item.style.transform = 'none';
+                        }
+                    });
+                } else {
+                    if (imgBoxList[0].id === 'last-img-box') {
+                        lastImgBox.style.transition = 'none';
+                        lastImgBox.style.transform = 'translateX(0px)';
+                    } else if (index >= 0) {
+                        imgBoxList[0].style.transform = 'none';
+                    } else {
+                        imgBoxList[0].style.transform = 'translateX(' + totalLength + 'vw)';
+                    }
+                }
+                imgBoxList.push(imgBoxList.shift());
+            }, animationTime * 1000);
+        } else {
+            index++;
+            imgBoxList.unshift(imgBoxList.pop());
+            if (imgBoxList[0].id === 'last-img-box' && index !== 0) {
+                imgBoxList[0].style.transform = 'translateX(-' + (totalLength * 2) + 'vw)';
+            } else if (index < 0) {
+                imgBoxList[0].style.transform = 'none';
+            } else {
+                imgBoxList[0].style.transform = 'translateX(-' + totalLength + 'vw)';
+            }
+            imgListOne.style.left = imgBoxLength * index + 'vw';
+            lastImgBox.style.transition = 'none';
+            if (Math.abs(index) === imgBoxCount) {
+                index = 0;
+                setTimeout(function () {
+                    imgListOne.style.transition = 'none';
+                    imgListOne.style.left = '0';
+                    imgBoxList.forEach(function (item) {
+                        if (item.id === 'last-img-box') {
+                            item.style.transform = 'translateX(-' + totalLength + 'vw)';
+                        } else {
+                            item.style.transform = 'none';
+                        }
+                    });
+                }, animationTime * 1000);
+            }
+        }
+        imgListOne.style.transition = animationTime + 's ease';
+    }
+
+    function throttle(fn, delay) {
+        return function () {
+            if (timer) return;
+            fn();
+            timer = setTimeout(function () { timer = null; }, delay);
+        };
+    }
+
+    nextBtn.addEventListener('click', throttle(function () { cilckFun('next'); }, animationTime * 1000));
+    lastBtn.addEventListener('click', throttle(function () { cilckFun('last'); }, animationTime * 1000));
+
+    // 点击轮播图片放大预览
+    imgBoxList.forEach(function (box) {
+        box.addEventListener('click', function (e) {
+            // 不阻止轮播按钮的点击
+            if (e.target.closest('.btn')) return;
+            const img = this.querySelector('img');
+            if (!img || !img.src) return;
+            modalContent.innerHTML = '';
+            showPPTImages([img.src]);
+            modal.classList.add('active');
+        });
+    });
+})();
+
+// ========== PPT轮播入场动画（首次滚动到PPT区域时触发）==========
+(function initPptEntrance() {
+    var wrapper = document.querySelector('#ppt .ppt-carousel-wrapper');
+    if (!wrapper) return;
+    var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                wrapper.classList.add('entered');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+    observer.observe(wrapper);
+})();
+
+
+
+
+

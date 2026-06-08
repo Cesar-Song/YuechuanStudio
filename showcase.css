@@ -1,0 +1,265 @@
+/* ========== 参考 elliptical-rotation-chart-master/style.css 完全一致 ========== */
+@font-face {
+  font-family: 'Millik';
+  font-weight: 700;
+  src: url(./elliptical-rotation-chart-master/asset/font/Millik.c3f91cb.ttf) format("truetype");
+  text-rendering: optimizeLegibility;
+}
+
+:root {
+  --post-spacing: 1.78vw;
+  --post-size: 25vw;
+  --mask-size: 100vw;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  background: #0b0b0b;
+  color: #f0f0f0;
+  font-family: 'Millik', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', 'Inter', 'Arial', sans-serif;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* ========== 顶部导航栏（唯一附加元素）========== */
+.showcase-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: rgba(11, 11, 11, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+}
+
+.showcase-nav .back-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #b0b0b0;
+  font-size: 0.78rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: color 0.35s ease;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.showcase-nav .back-link:hover {
+  color: #c9a87c;
+}
+
+.showcase-nav .back-link .arrow {
+  display: inline-block;
+  transition: transform 0.35s ease;
+}
+
+.showcase-nav .back-link:hover .arrow {
+  transform: translateX(-4px);
+}
+
+.showcase-nav .nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #f0f0f0;
+  font-family: 'Millik', 'Georgia', 'Times New Roman', serif;
+  font-size: 1.2rem;
+  letter-spacing: 3px;
+  white-space: nowrap;
+}
+
+.showcase-nav .nav-brand img {
+  height: 32px;
+  width: auto;
+}
+
+.showcase-nav .nav-brand .dot {
+  color: #c9a87c;
+}
+
+/* ========== 标题（与参考一致）========== */
+.title {
+  position: absolute;
+  left: 50%;
+  top: 5%;
+  -webkit-transform: translate(-50%, -5%);
+          transform: translate(-50%, -5%);
+}
+
+.title p {
+  font-size: 4rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* ========== 轮播横幅（与参考完全一致）========== */
+#banner {
+  overflow: hidden;
+  position: relative;
+  width: 100vw;
+  height: calc(var(--post-size) / 0.72);
+  -webkit-mask: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDQwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDE0NDAgNTAwIiBpZD0iaiI+CiAgPHBhdGggZmlsbD0icmdiKDIwMCwyMDAsMjAwKSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMCAwczI3NS4wNCAxMDAgNzIwIDEwMFMxNDQwIDAgMTQ0MCAwdjUwMHMtMjc1LjA0LTEwMC03MjAtMTAwUzAgNTAwIDAgNTAwVjB6Ii8+Cjwvc3ZnPgo=);
+          mask: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy54My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDQwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDE0NDAgNTAwIiBpZD0iaiI+CiAgPHBhdGggZmlsbD0icmdiKDIwMCwyMDAsMjAwKSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMCAwczI3NS4wNCAxMDAgNzIwIDEwMFMxNDQwIDAgMTQ0MCAwdjUwMHMtMjc1LjA0LTEwMC03MjAtMTAwUzAgNTAwIDAgNTAwVjB6Ii8+Cjwvc3ZnPgo=);
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+          mask-position: center;
+  -webkit-mask-size: var(--mask-size);
+          mask-size: var(--mask-size);
+  position: absolute;
+  top: 10%;
+}
+
+#banner .img-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  width: 100%;
+  float: left;
+  height: calc(var(--post-size) / 0.72);
+  -webkit-transform: translate(13.39vw, 0);
+          transform: translate(13.39vw, 0);
+  -webkit-animation: admission 1.5s;
+          animation: admission 1.5s;
+}
+
+#banner .img-wrapper .img-box {
+  height: 100%;
+  display: inline-block;
+  margin-right: var(--post-spacing);
+  position: relative;
+  cursor: pointer;
+}
+
+#banner .img-wrapper .img-box .info {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(23, 23, 23, 0.5);
+  text-align: center;
+  color: #fff9f1;
+  font-size: 4rem;
+}
+
+#banner .img-wrapper .img-box img,
+#banner .img-wrapper .img-box video {
+  width: var(--post-size);
+  height: 100%;
+  -o-object-position: center;
+     object-position: center;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+/* 最后一个 img-box 初始偏移量由各页面内联 style 指定 */
+
+/* ========== 按钮组（与参考完全一致）========== */
+.btn-group {
+  height: 15vh;
+  position: absolute;
+  left: 50%;
+  bottom: 0%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-transition: 1s;
+  transition: 1s;
+  opacity: 0;
+}
+
+.btn-group .btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid #171717;
+  background-color: #fff;
+  margin: 10px;
+  cursor: pointer;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.btn-group .btn:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+  background-color: #000;
+}
+
+.btn-group .btn:hover .icon {
+  fill: #fff;
+}
+
+.btn-group .btn .icon {
+  width: 30px;
+  height: 30px;
+}
+
+.btn-group .btn .right {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.img-list {
+  left: 0;
+}
+
+/* ========== 入场动画（与参考完全一致）========== */
+@-webkit-keyframes admission {
+  0% {
+    -webkit-transform: translate(140vw, 0);
+            transform: translate(140vw, 0);
+  }
+  100% {
+    -webkit-transform: translate(13.39vw, 0);
+            transform: translate(13.39vw, 0);
+  }
+}
+
+@keyframes admission {
+  0% {
+    -webkit-transform: translate(140vw, 0);
+            transform: translate(140vw, 0);
+  }
+  100% {
+    -webkit-transform: translate(13.39vw, 0);
+            transform: translate(13.39vw, 0);
+  }
+}
