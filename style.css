@@ -3,6 +3,7 @@
     font-family: 'Millik';
     font-weight: 700;
     src: url(./elliptical-rotation-chart-master/asset/font/Millik.c3f91cb.ttf) format("truetype");
+    font-display: swap;
     text-rendering: optimizeLegibility;
 }
 
@@ -74,7 +75,7 @@ body {
 
 .hero { position: relative; width: 100%; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #0b0b0b; }
 .hero-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
-.hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+.hero-bg img, .hero-bg video { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
 .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(11, 11, 11, 0.35) 0%, rgba(11, 11, 11, 0.55) 100%); pointer-events: none; }
 .hero-particles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.25; z-index: 1; }
 .hero-particles .particle { position: absolute; border-radius: 50%; background: var(--accent); animation: floatUp linear infinite; }
@@ -94,9 +95,9 @@ body {
 .hero-content h1 .accent .text3d-char.fisheye { transform: scale(1.22); color: var(--accent-hover); }
 .hero-content .hero-subtitle .text3d-char.fisheye { transform: scale(1.12); color: var(--text-primary); }
 .hero-cta { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; }
-.btn-primary { display: inline-block; padding: 14px 36px; background: var(--accent); color: #0b0b0b; text-decoration: none; letter-spacing: 2.5px; font-size: 0.78rem; text-transform: uppercase; transition: all var(--transition); border-radius: 2px; font-weight: 600; }
+.btn-primary { display: inline-block; padding: 16px 40px; background: var(--accent); color: #0b0b0b; text-decoration: none; letter-spacing: 2.5px; font-size: 0.95rem; text-transform: uppercase; transition: all var(--transition); border-radius: 2px; font-weight: 600; }
 .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(201, 168, 124, 0.3); }
-.btn-outline-light { display: inline-block; padding: 14px 36px; border: 1px solid var(--text-secondary); color: var(--text-primary); text-decoration: none; letter-spacing: 2.5px; font-size: 0.78rem; text-transform: uppercase; transition: all var(--transition); border-radius: 2px; }
+.btn-outline-light { display: inline-block; padding: 16px 40px; border: 1px solid var(--text-secondary); color: var(--text-primary); text-decoration: none; letter-spacing: 2.5px; font-size: 0.95rem; text-transform: uppercase; transition: all var(--transition); border-radius: 2px; }
 .btn-outline-light:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 .hero-scroll { position: absolute; bottom: 35px; left: 50%; transform: translateX(-50%); z-index: 4; animation: bounce 2s infinite; opacity: 0.6; cursor: pointer; }
 .hero-scroll span { display: block; width: 22px; height: 22px; border-right: 2px solid var(--text-primary); border-bottom: 2px solid var(--text-primary); transform: rotate(45deg); }
@@ -104,7 +105,7 @@ body {
 
 /* ========== 通用区块 ========== */
 .section { padding: 110px 0; width: 100%; overflow: visible; }
-.section-header { margin-bottom: 70px; padding: 0; width: 100%; box-sizing: border-box; }
+.section-header { margin-bottom: 70px; padding: 0; width: 100%; box-sizing: border-box; content-visibility: auto; contain-intrinsic-size: 200px; }
 .section-header--left { text-align: left; }
 .section-header--right { text-align: right; }
 .section-title-row { display: flex; align-items: center; gap: 28px; width: 100%;
@@ -185,11 +186,11 @@ body {
 .btn-download-cv:hover { background: var(--accent); color: #0b0b0b; }
 
 /* ========== 作品展示通用样式 ========== */
-.works-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(460px, 1fr)); gap: 28px; padding: 0 var(--edge-padding); }
+.works-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(460px, 1fr)); gap: 28px; padding: 0 var(--edge-padding); contain: layout style paint; }
 .work-card { position: relative; border-radius: var(--radius); overflow: hidden; cursor: pointer; transition: transform var(--transition), box-shadow var(--transition); border: 1px solid var(--border-subtle); background: #111; }
 .work-card:hover { transform: translateY(-8px); box-shadow: 0 30px 50px rgba(0, 0, 0, 0.6); border-color: var(--border-medium); }
 .work-card-image { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #111; }
-.work-card-image img, .work-card-image video { width: 100%; height: 100%; object-fit: cover; display: block; transition: filter var(--transition); }
+.work-card-image img, .work-card-image video { width: 100%; height: 100%; object-fit: cover; display: block; transition: filter var(--transition); will-change: filter; }
 /* 信息层：覆盖在图片上，默认隐藏 */
 .work-card-info { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 30px; opacity: 0; transition: opacity var(--transition); pointer-events: none; }
 .work-card:hover .work-card-info,
@@ -420,8 +421,8 @@ body {
     }
     .btn-primary,
     .btn-outline-light {
-        padding: 12px 26px;
-        font-size: 0.75rem;
+        padding: 13px 28px;
+        font-size: 0.85rem;
         letter-spacing: 2px;
     }
     .hero-big-text {
@@ -653,8 +654,8 @@ body {
     }
     .btn-primary,
     .btn-outline-light {
-        padding: 10px 20px;
-        font-size: 0.7rem;
+        padding: 12px 24px;
+        font-size: 0.78rem;
     }
     .section {
         padding: 50px 0;
@@ -770,6 +771,7 @@ body {
     src: url("type/DRUNKFONTS-Regular.otf") format("opentype");
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
@@ -777,6 +779,7 @@ body {
     src: url("type/Amazon Ember.TTF") format("truetype");
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
@@ -784,6 +787,7 @@ body {
     src: url("type/glossy display extended light.otf") format("opentype");
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
@@ -791,6 +795,7 @@ body {
     src: url("type/glossy display extended italic.otf") format("opentype");
     font-weight: normal;
     font-style: italic;
+    font-display: swap;
 }
 
 @font-face {
@@ -798,6 +803,7 @@ body {
     src: url("type/新闻明朝体MNewsMPro-Light.otf") format("opentype");
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 
 .hero-big-text {

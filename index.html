@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="logo/logoblack.jpg" type="image/png">
     <title>VEUS | Learn as You Build</title>
+
+    <!-- 资源预加载：关键字体最先加载 -->
+    <link rel="preload" href="type/glossy%20display%20extended%20light.otf" as="font" type="font/otf" crossorigin>
+    <link rel="preload" href="type/glossy%20display%20extended%20italic.otf" as="font" type="font/otf" crossorigin>
+    <!-- 预连接外部资源 -->
+    <link rel="preconnect" href="https://xhslink.com">
+    <link rel="preconnect" href="https://v.douyin.com">
+
     <link rel="stylesheet" href="style.css">
     </head>
 <body>
@@ -20,7 +28,7 @@
                     <circle class="preloader-ring-fill" id="preloaderRingFill" cx="60" cy="60" r="52"/>
                 </svg>
                 <div class="preloader-logo">
-                    <img src="logo/logowhite.jpg" alt="YUECHUAN STUDIO" class="preloader-logo-img">
+                    <img src="logo/logowhite_sm.webp" alt="YUECHUAN STUDIO" class="preloader-logo-img">
                 </div>
             </div>
             <div class="preloader-title">VEUS</div>
@@ -42,7 +50,7 @@
         <!-- ==================== 导航栏 ==================== -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="#home" class="logo"><img src="logo/logowhite.jpg" alt="" class="logo-img"><span class="logo-text">VEUS<span class="dot">
+            <a href="#home" class="logo"><img src="logo/logowhite_sm.webp" alt="" class="logo-img"><span class="logo-text">VEUS<span class="dot">.</span></span></a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#about">简历</a></li>
                 <li><a href="#aigc">AIGC设计</a></li>
@@ -59,7 +67,9 @@
     <!-- ==================== Hero 区域 ==================== -->
     <section class="hero" id="home">
         <div class="hero-bg" aria-hidden="true">
-            <img src="background/converted.gif" alt="">
+            <video autoplay muted loop playsinline preload="none" poster="background/converted_poster.png" fetchpriority="high">
+                <source src="background/converted_bg.mp4" type="video/mp4">
+            </video>
         </div>
         <div class="hero-particles" id="heroParticles"></div>
         <!-- 全屏英文大标题 -->
@@ -70,8 +80,8 @@
             <h1>VEUS</h1>
             <p class="hero-subtitle">PPT设计 · AIGC创作 · 视觉表达</p>
             <div class="hero-cta">
-                <a href="#aigc" class="btn-primary">查看作品</a>
                 <a href="#about" class="btn-outline-light">了解我</a>
+                <a href="#aigc" class="btn-primary">查看作品</a>
             </div>
         </div>
         <div class="hero-scroll" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
@@ -93,7 +103,7 @@
         </div>
         <div class="about-grid">
             <div class="about-bg-image">
-                <img src="extra-picture/个人简历9：16黑白.jpg" alt="个人照片">
+                <img src="extra-picture/个人简历9：16黑白.jpg" alt="个人照片" loading="lazy" decoding="async">
             </div>
             <div class="about-cell about-cell-r1c1"></div>
             <div class="about-cell about-cell-r1c2"></div>
@@ -132,16 +142,16 @@
             <div class="section-title-row">
                 <div class="section-title-group">
                     <div class="section-number">02</div>
-                    <h2>AIGC设计作品</h2>
+                    <h2>AIGC · 智创视界</h2>
                 </div>
                 <div class="section-line"></div>
             </div>
             <p>AI-Generated Content · 视频展示</p>
         </div>
         <div class="works-grid">
-            <div class="work-card aigc-card" data-type="aigc" data-video="AIGC-video/AIGC-1.mp4" data-images="AIGC-video/AIGC-1.png">
+            <div class="work-card aigc-card" data-type="aigc" data-video="AIGC-video/AIGC-1.mp4" data-images="AIGC-video/AIGC-1.webp">
                 <div class="work-card-image">
-                    <video muted loop playsinline poster="AIGC-video/AIGC-1.png">
+                    <video muted loop playsinline preload="none" poster="AIGC-video/AIGC-1.webp" loading="lazy">
                         <source src="AIGC-video/AIGC-1.mp4" type="video/mp4">
                     </video>
                     <div class="work-card-overlay"><span class="overlay-icon">▶</span></div>
@@ -152,43 +162,69 @@
                     <p>Midjourney + libTV 生成</p>
                 </div>
             </div>
-            <div class="work-card aigc-card" data-type="aigc" data-video="AIGC-video/AIGC-2.mp4" data-images="AIGC-video/AIGC-2.png">
+            <div class="work-card aigc-card" data-type="aigc" data-video="AIGC-video/AIGC-2.mp4" data-images="AIGC-video/AIGC-2.webp">
                 <div class="work-card-image">
-                    <video muted loop playsinline poster="AIGC-video/AIGC-2.png">
+                    <video muted loop playsinline preload="none" poster="AIGC-video/AIGC-2.webp" loading="lazy">
                         <source src="AIGC-video/AIGC-2.mp4" type="video/mp4">
                     </video>
                     <div class="work-card-overlay"><span class="overlay-icon">▶</span></div>
                 </div>
                 <div class="work-card-info">
-                    <div class="work-category">宠物仓广告</div>
+                    <div class="work-category">宠物舱广告</div>
                     <h4>主视觉AI动画</h4>
                     <p>libTV + ChatGPT</p>
                 </div>
             </div>
-            <div class="work-card aigc-card" data-type="aigc" data-video="AIGC-video/AIGC-3.mp4" data-images="AIGC-video/AIGC-3.png">
+            <div class="work-card aigc-card" data-type="aigc" data-video="AIGC-video/AIGC-3.mp4" data-images="AIGC-video/AIGC-3.webp">
                 <div class="work-card-image">
-                    <video muted loop playsinline poster="AIGC-video/AIGC-3.png">
+                    <video muted loop playsinline preload="none" poster="AIGC-video/AIGC-3.webp" loading="lazy">
                         <source src="AIGC-video/AIGC-3.mp4" type="video/mp4">
                     </video>
                     <div class="work-card-overlay"><span class="overlay-icon">▶</span></div>
                 </div>
                 <div class="work-card-info">
                     <div class="work-category">AIGC · 娃哈哈广告</div>
-                    <h4>IP生成过程</h4>
+                    <h4>真实人像感</h4>
                     <p>Midjourney 变体动画</p>
                 </div>
             </div>
-            <div class="work-card aigc-card" data-type="aigc" data-video="AIGC-video/AIGC-4.mp4" data-images="AIGC-video/AIGC-4.png">
+            <div class="work-card aigc-card" data-type="aigc" data-video="AIGC-video/AIGC-4.mp4" data-images="AIGC-video/AIGC-4.webp">
                 <div class="work-card-image">
-                    <video muted loop playsinline poster="AIGC-video/AIGC-4.png">
+                    <video muted loop playsinline preload="none" poster="AIGC-video/AIGC-4.webp" loading="lazy">
                         <source src="AIGC-video/AIGC-4.mp4" type="video/mp4">
                     </video>
                     <div class="work-card-overlay"><span class="overlay-icon">▶</span></div>
                 </div>
                 <div class="work-card-info">
                     <div class="work-category">AIGC · 环太平洋</div>
-                    <h4>超现实场景漫游</h4>
+                    <h4>机甲美学</h4>
                     <p>seedance</p>
+                </div>
+            </div>
+            <div class="work-card aigc-card" data-type="aigc" data-video="AIGC-video/AIGC-5.mp4" data-images="AIGC-video/AIGC-5.png">
+                <div class="work-card-image">
+                    <video muted loop playsinline preload="none" poster="AIGC-video/AIGC-5.png" loading="lazy">
+                        <source src="AIGC-video/AIGC-5.mp4" type="video/mp4">
+                    </video>
+                    <div class="work-card-overlay"><span class="overlay-icon">▶</span></div>
+                </div>
+                <div class="work-card-info">
+                    <div class="work-category">AIGC · 武侠风</div>
+                    <h4>邵氏夸张武侠风</h4>
+                    <p>seedance + libTV</p>
+                </div>
+            </div>
+            <div class="work-card aigc-card" data-type="aigc" data-video="AIGC-video/AIGC-6.mp4" data-images="AIGC-video/AIGC-6.png">
+                <div class="work-card-image">
+                    <video muted loop playsinline preload="none" poster="AIGC-video/AIGC-6.png" loading="lazy">
+                        <source src="AIGC-video/AIGC-6.mp4" type="video/mp4">
+                    </video>
+                    <div class="work-card-overlay"><span class="overlay-icon">▶</span></div>
+                </div>
+                <div class="work-card-info">
+                    <div class="work-category">AIGC · 赛博江湖</div>
+                    <h4>超现实特写</h4>
+                    <p>LibTV</p>
                 </div>
             </div>
         </div>
@@ -201,7 +237,7 @@
                 <div class="section-title-row">
                     <div class="section-title-group">
                         <div class="section-number">03</div>
-                        <h2>PPT设计作品</h2>
+                        <h2>PPT DESIGN · 演示美学</h2>
                     </div>
                     <div class="section-line"></div>
                 </div>
@@ -212,27 +248,27 @@
                     <div class="img-list img-wrapper">
                         <div class="img-box">
                             <div class="info"><h3>One click triple connection</h3></div>
-                            <img src="PPT-image/PPT-1.png" alt="">
+                            <img src="PPT-image/PPT-1.webp" alt="" loading="lazy" decoding="async">
                         </div>
                         <div class="img-box">
                             <div class="info"><h3>One click triple connection</h3></div>
-                            <img src="PPT-image/PPT-2.png" alt="">
+                            <img src="PPT-image/PPT-2.webp" alt="" loading="lazy" decoding="async">
                         </div>
                         <div class="img-box">
                             <div class="info"><h3>One click triple connection</h3></div>
-                            <img src="PPT-image/PPT-3.png" alt="">
+                            <img src="PPT-image/PPT-3.webp" alt="" loading="lazy" decoding="async">
                         </div>
                         <div class="img-box">
                             <div class="info"><h3>One click triple connection</h3></div>
-                            <img src="PPT-image/PPT-4.png" alt="">
+                            <img src="PPT-image/PPT-4.webp" alt="" loading="lazy" decoding="async">
                         </div>
                         <div class="img-box">
                             <div class="info"><h3>One click triple connection</h3></div>
-                            <img src="PPT-image/PPT-5.png" alt="">
+                            <img src="PPT-image/PPT-5.webp" alt="" loading="lazy" decoding="async">
                         </div>
                         <div class="img-box" id="last-img-box">
                             <div class="info"><h3>One click triple connection</h3></div>
-                            <img src="PPT-image/PPT-6.png" alt="">
+                            <img src="PPT-image/PPT-6.webp" alt="" loading="lazy" decoding="async">
                         </div>
                     </div>
                 </div>
@@ -266,21 +302,21 @@
         </div>
             <div class="social-grid">
             <a href="https://xhslink.com/m/7jqiYCoCjYl" class="social-card" target="_blank" rel="noopener">
-                <div class="social-icon"><img src="logo/小红书logo.png" alt="小红书" style="width:64px;height:64px;"></div>
+                <div class="social-icon"><img src="logo/小红书logo.png" alt="小红书" style="width:64px;height:64px;" loading="lazy"></div>
                 <div class="social-info">
                     <div class="social-name">小红书</div>
                     <div class="social-handle">@跃川-</div>
                 </div>
             </a>
             <a class="social-card" target="_blank" rel="noopener">
-                <div class="social-icon"><img src="logo/微信logo.svg" alt="微信" style="width:64px;height:64px;"></div>
+                <div class="social-icon"><img src="logo/微信logo.svg" alt="微信" style="width:64px;height:64px;" loading="lazy"></div>
                 <div class="social-info">
                     <div class="social-name">微信</div>
                     <div class="social-handle">Jiang-1104z</div>
                 </div>
             </a>
             <a href="https://v.douyin.com/s3BhV5Or4Hw/7@4.com" class="social-card" target="_blank" rel="noopener">
-                <div class="social-icon"><img src="logo/抖音logo.image" alt="抖音" style="width:45px;height:45px;"></div>
+                <div class="social-icon"><img src="logo/抖音logo.image" alt="抖音" style="width:45px;height:45px;" loading="lazy"></div>
                 <div class="social-info">
                     <div class="social-name">抖音</div>
                     <div class="social-handle">@未命名</div>
@@ -299,7 +335,7 @@
 
     <!-- ==================== 页脚 ==================== -->
     <footer class="footer">
-        <div class="footer-name"><img src="logo/logowhite.jpg" alt="" class="footer-logo-img">VEUS</div>
+        <div class="footer-name"><img src="logo/logowhite_sm.webp" alt="" class="footer-logo-img">VEUS</div>
         <div class="footer-tagline">PPT设计 · AIGC创作 · 视觉表达</div>
         <div class="footer-copy">&copy; 2026 VEUS. All rights reserved. | 个人设计作品集</div>
     </footer>

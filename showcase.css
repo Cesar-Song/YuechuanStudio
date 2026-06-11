@@ -3,6 +3,7 @@
   font-family: 'Millik';
   font-weight: 700;
   src: url(./elliptical-rotation-chart-master/asset/font/Millik.c3f91cb.ttf) format("truetype");
+  font-display: swap;
   text-rendering: optimizeLegibility;
 }
 

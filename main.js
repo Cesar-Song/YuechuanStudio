@@ -403,9 +403,39 @@ function renderMediaItem() {
         var video = document.createElement('video');
         video.controls = true;
         video.autoplay = true;
+        video.playsInline = true;
+        video.preload = 'auto';
         video.src = src;
         video.style.maxWidth = '90vw';
         video.style.maxHeight = '85vh';
+
+        // 加载失败处理
+        video.addEventListener('error', function() {
+            var errMsg = document.createElement('div');
+            errMsg.textContent = '视频加载失败，请检查网络后重试';
+            errMsg.style.cssText = 'color:#e0a060;font-size:1rem;padding:40px;text-align:center;';
+            var parent = video.parentNode;
+            if (parent) {
+                parent.insertBefore(errMsg, video);
+            }
+            video.style.display = 'none';
+            fullscreenBtn.style.display = 'none';
+            currentVideoElement = null;
+        });
+
+        // 加载指示器
+        var loadingEl = document.createElement('div');
+        loadingEl.textContent = '⏳ 加载中...';
+        loadingEl.style.cssText = 'color:#b0b0b0;font-size:1rem;padding:40px;text-align:center;';
+        modalContent.insertBefore(loadingEl, modalContent.firstChild);
+        video.addEventListener('loadeddata', function() {
+            if (loadingEl.parentNode) loadingEl.parentNode.removeChild(loadingEl);
+            video.play().catch(function() {});
+        });
+        video.addEventListener('error', function() {
+            if (loadingEl.parentNode) loadingEl.parentNode.removeChild(loadingEl);
+        });
+
         modalContent.insertBefore(video, modalContent.firstChild);
         currentVideoElement = video;
     } else {
@@ -422,9 +452,40 @@ function showVideo(videoUrl) {
     const video = document.createElement('video');
     video.controls = true;
     video.autoplay = true;
+    video.playsInline = true;
+    video.preload = 'auto';
     video.src = videoUrl;
     video.style.maxWidth = '90vw';
     video.style.maxHeight = '85vh';
+
+    // 加载失败时显示提示
+    video.addEventListener('error', function() {
+        var errMsg = document.createElement('div');
+        errMsg.className = 'video-error-msg';
+        errMsg.textContent = '视频加载失败，请检查网络后重试';
+        errMsg.style.cssText = 'color:#e0a060;font-size:1rem;padding:40px;text-align:center;';
+        if (video.parentNode) {
+            video.parentNode.insertBefore(errMsg, video);
+        }
+        video.style.display = 'none';
+        fullscreenBtn.style.display = 'none';
+        currentVideoElement = null;
+    });
+
+    // 显示加载指示器
+    var loadingEl = document.createElement('div');
+    loadingEl.className = 'video-loading';
+    loadingEl.textContent = '⏳ 加载中...';
+    loadingEl.style.cssText = 'color:#b0b0b0;font-size:1rem;padding:40px;text-align:center;';
+    modalContent.insertBefore(loadingEl, video);
+    video.addEventListener('loadeddata', function() {
+        if (loadingEl.parentNode) loadingEl.parentNode.removeChild(loadingEl);
+        video.play().catch(function() {});
+    });
+    video.addEventListener('error', function() {
+        if (loadingEl.parentNode) loadingEl.parentNode.removeChild(loadingEl);
+    });
+
     modalContent.appendChild(video);
     currentVideoElement = video;
 }
@@ -708,7 +769,7 @@ const observer = new IntersectionObserver((entries) => {
             entry.target.style.transform = 'translateY(0)';
         }
     });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0.05, rootMargin: '200px 0px 200px 0px' });
 
 document.querySelectorAll('.work-card:not(.ppt-carousel-card), .social-card, .about-content, .skill-tag').forEach(el => {
     el.style.opacity = '0';
@@ -724,7 +785,7 @@ const sectionObserver = new IntersectionObserver((entries) => {
             entry.target.classList.add('fade-in');
         }
     });
-}, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+}, { threshold: 0.02, rootMargin: '200px 0px 200px 0px' });
 
 document.querySelectorAll('.fade-section').forEach(el => {
     sectionObserver.observe(el);
