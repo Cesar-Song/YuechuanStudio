@@ -19,8 +19,8 @@
     --accent-dim: rgba(201, 168, 124, 0.15);
     --border-subtle: rgba(255, 255, 255, 0.08);
     --border-medium: rgba(255, 255, 255, 0.15);
-    --font-heading: 'Millik', 'Georgia', 'Times New Roman', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-    --font-body: 'Millik', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', 'Inter', 'Arial', sans-serif;
+    --font-heading: 'Glossy Display Ext Italic', '新闻明朝体', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    --font-body: 'Glossy Display Ext Italic', '新闻明朝体', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', 'Inter', 'Arial', sans-serif;
     --transition: 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
     --radius: 6px;
     --edge-padding: max(10px, 1.5vw);
@@ -85,7 +85,7 @@ body {
 .hero-waves svg { width: 100%; height: 100%; }
 .hero-waves svg path { fill: none; stroke: rgba(201, 168, 124, 0.18); stroke-width: 1px; }
 .hero-content { position: relative; z-index: 3; text-align: center; padding: 0 24px; max-width: 750px; transform-style: preserve-3d; will-change: transform; transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1); }
-.hero-content h1 { font-family: var(--font-heading); font-size: clamp(2.4rem, 6vw, 4.5rem); font-weight: 600; letter-spacing: 6px; color: var(--text-primary); margin-bottom: 1.2rem; line-height: 1.2; text-shadow: 0 1px 1px rgba(0,0,0,0.4), 0 2px 4px rgba(0,0,0,0.3), 0 4px 12px rgba(0,0,0,0.25), 0 1px 0 rgba(201,168,124,0.15); }
+.hero-content h1 { font-family: 'Glossy Display Ext Light', '新闻明朝体', sans-serif; font-size: 160px; font-weight: 600; letter-spacing: 12px; color: var(--text-primary); opacity: 0.5; margin-bottom: 1.2rem; line-height: 1.2; white-space: nowrap; text-shadow: 0 1px 1px rgba(0,0,0,0.4), 0 2px 4px rgba(0,0,0,0.3), 0 4px 12px rgba(0,0,0,0.25), 0 1px 0 rgba(201,168,124,0.15); }
 .hero-content h1 .accent { color: var(--accent); font-weight: 800; text-shadow: 0 1px 1px rgba(0,0,0,0.5), 0 2px 4px rgba(0,0,0,0.35), 0 4px 12px rgba(0,0,0,0.25), 0 0 30px rgba(201,168,124,0.15); }
 .hero-content .hero-subtitle { font-size: 1rem; letter-spacing: 3px; color: var(--text-secondary); margin-bottom: 2.5rem; font-weight: 400; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
 /* 鱼眼放大效果 - 文字悬停 */
@@ -129,11 +129,11 @@ body {
     background-repeat: no-repeat;
     background-position: right top;
     background-size: auto 140%;
-    opacity: 0.18;
+    opacity: 0.35;
     pointer-events: none;
 }
-.section-header .section-number { font-size: 0.7rem; letter-spacing: 4px; color: var(--accent); text-transform: uppercase; margin-bottom: 0.5rem; font-weight: 500; }
-.section-header h2 { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 600; letter-spacing: 5px; margin: 0; color: var(--text-primary); line-height: 1.2; }
+.section-header .section-number { font-size: 0.7rem; letter-spacing: 4px; color: var(--accent); text-transform: uppercase; margin-bottom: 0.5rem; font-weight: 500; font-family: 'Amazon Ember', sans-serif; }
+.section-header h2 { font-family: 'Amazon Ember', sans-serif; font-size: 2.5rem; font-weight: 600; letter-spacing: 5px; margin: 0; color: var(--text-primary); line-height: 1.2; }
 .section-header .section-line { flex: 1; height: 1px; min-width: 60px; background: linear-gradient(90deg, var(--accent) 0%, rgba(201, 168, 124, 0.15) 100%); opacity: 0.85; }
 .section-header--right .section-line { background: linear-gradient(270deg, var(--accent) 0%, rgba(201, 168, 124, 0.15) 100%); }
 .section-header p { font-size: 0.85rem; letter-spacing: 2px; color: var(--text-muted); margin-top: 1rem; font-weight: 400; }
@@ -407,7 +407,7 @@ body {
         padding: 0 20px;
     }
     .hero-content h1 {
-        font-size: clamp(1.8rem, 7vw, 2.4rem);
+        font-size: 72px;
         letter-spacing: 3px;
     }
     .hero-content .hero-subtitle {
@@ -642,7 +642,7 @@ body {
         height: 18px;
     }
     .hero-content h1 {
-        font-size: 1.6rem;
+        font-size: 52px;
         letter-spacing: 2px;
     }
     .hero-content .hero-subtitle {
@@ -768,6 +768,34 @@ body {
 @font-face {
     font-family: 'DRUNKFONTS';
     src: url("type/DRUNKFONTS-Regular.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Amazon Ember';
+    src: url("type/Amazon Ember.TTF") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Glossy Display Ext Light';
+    src: url("type/glossy display extended light.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Glossy Display Ext Italic';
+    src: url("type/glossy display extended italic.otf") format("opentype");
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: '新闻明朝体';
+    src: url("type/新闻明朝体MNewsMPro-Light.otf") format("opentype");
     font-weight: normal;
     font-style: normal;
 }
