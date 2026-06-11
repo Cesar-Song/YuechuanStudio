@@ -156,9 +156,9 @@ body {
 #about > .section-header { position: relative; z-index: 2; flex-shrink: 0; padding: 80px 0 0 0; margin-bottom: 0; width: 100%; box-sizing: border-box; overflow: hidden; }
 #about > .section-header .section-title-row { width: 100%; padding-left: var(--edge-padding); }
 #about > .section-header p { padding-left: var(--edge-padding); }
-.about-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: auto 1fr 1fr; position: relative; flex: 1; width: 100%; min-height: 60vh; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: auto 1fr 1fr; position: relative; flex: 1; width: 100%; min-height: 60vh; overflow: hidden; }
 .about-bg-image { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
-.about-bg-image img { position: absolute; left: 0; top: 50%; transform: translateY(-50%); height: 100%; width: auto; min-width: 100%; object-fit: cover; object-position: left center; display: block; }
+.about-bg-image img { position: absolute; left: -80px; top: 50%; transform: translateY(-50%); height: 100%; width: calc(100% + 80px); min-width: 100%; object-fit: cover; object-position: left center; display: block; }
 /* 上下淡出 + 右侧遮罩 */
 .about-bg-image::before { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, var(--bg-dark) 0%, transparent 12%, transparent 88%, var(--bg-dark) 100%); pointer-events: none; }
 .about-bg-image::after { content: ''; position: absolute; inset: 0; z-index: 2; background: linear-gradient(90deg, rgba(11,11,11,0.45) 0%, rgba(11,11,11,0.7) 33%, rgba(11,11,11,0.9) 66%, rgba(11,11,11,0.97) 100%); pointer-events: none; }
